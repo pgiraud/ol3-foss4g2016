@@ -55,8 +55,8 @@
   <body>
     <div class="reveal">
       <div class="slides">
-        <section>
-          <h1 class="beefy">OpenLayers 3</h1>
+        <section data-background="#7A7F82">
+          <h1 class="beefy" style="color: #FF6809;">OpenLayers 3</h1>
         </section>
 
         <section>
@@ -71,7 +71,344 @@
         </section>
 
         <section>
-          <h1>Merci !</h1>
+          <ul>
+            <li>Où en est-on ?</li>
+            <li>Fonctionnalités</li>
+            <li>Côté technique</li>
+            <li>Futur</li>
+            <li>Démos</li>
+          </ul>
+        </section>
+
+        <section>
+          <h1>Où en est-on ?</h1>
+        </section>
+
+        <section>
+          <h2>Un peu d'histoire</h2>
+          <p>Code sprint été 2012</p>
+          <p>Release <b>alpha 1</b> en avril 2013</p>
+          <p>... puis après une longue gestation</p>
+          <p>Release <b>3.0.0</b> stable en août 2014</p>
+        </section>
+
+        <section>
+          <h3>
+            Première utilisation "pour de vrai"
+          </h3>
+          <p>Géoportail suisse - SwissTopo</p>
+          <p><a href="http://map.geo.admin.ch">GeoAdmin.ch</a></p>
+          <p>Février 2014</p>
+        </section>
+
+        <section>
+          <h2>Aujourd'hui</h2>
+          <p>Version 3.15.1</p>
+        </section>
+
+        <section>
+          <p>Cycle de release régulier</p>
+          <p>~ tous les 1 à 2 mois</p>
+        </section>
+
+        <section>
+          <h1>Un petit tour des fonctionnalités</h1>
+        </section>
+
+        <section>
+          <h2>La carte et la vue</h2>
+          <h3>ol.Map & ol.View</h3>
+        </section>
+
+        <section>
+          <p>La <b>carte</b> est le composant principal
+          <ul>
+            On le configure avec :
+            <li>un conteneur,</li>
+            <li>des couches,</li>
+            <li>des interactions,</li>
+            <li>une vue.</li>
+          </ul>
+          </p>
+          <p>La <b>vue</b> est l'objet qui va contrôler l'affichage de la carte.
+          <ul>
+            On la configure avec :
+            <li>un centre,</li>
+            <li>des résolutions.</li>
+          </ul>
+          </p>
+        </section>
+
+        <section>
+          <pre><code class="javascript" data-trim>
+var map = new ol.Map({
+  target: 'map',
+  layers: [new ol.layer.Tile({
+      source: new ol.source.OSM()
+  })],
+  view: new ol.View({
+    center: ol.proj.fromLonLat([5, 45]),
+    zoom: 4
+  })
+});
+          </code></pre>
+        </section>
+
+        <section>
+          <h2>Les couches et les sources</h2>
+          <h3>ol.layer & ol.source</h3>
+        </section>
+
+        <section>
+          <p>Les <b>couches</b> indiquent comment afficher les données.</p>
+          <p>Les <b>sources</b> indiquent la provenance des données et comment les manipuler.</p>
+        </section>
+
+        <section>
+          <ul>
+            Quelques sources :
+            <li>OSM, MapQuest, Bing, ArcGIS,</li>
+            <li>WMS, WMTS, XYZ,</li>
+            <li>Image,</li>
+            <li>Vector <em>(+ ol.format)</em>,</li>
+            <li>TileJSON</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Les interactions et les contrôles</h2>
+          <h3>ol.interaction & ol.control</h3>
+        </section>
+
+        <section>
+          <p>Les <b>interactions</b> gèrent les interactions entre l'utilisateur et la carte.</p>
+          <p>Les <b>contrôles</b> sont des composants primitifs ajoutés à la carte.</p>
+        </section>
+
+        <section>
+          <ul>
+            Quelques interactions :
+            <li>DragPan, DoubleClickZoom, MouseWheelZoom</li>
+            <li>DragRotate, PinchZoom,</li>
+            <li>Draw, Modify</li>
+          </ul>
+        </section>
+
+        <section>
+          <ul>
+            Quelques contrôles :
+            <li>Zoom</li>
+            <li>MousePosition</li>
+            <li>ScaleLine</li>
+            <li>Attribution</li>
+            <li>FullScreen</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Garçon ?</h2>
+          <h2>Un peu de vecteur svp.</h2>
+        </section>
+
+        <section>
+          <p>Des <b>couches</b>, des <b>sources</b>, et des <b>contrôles</b> pour manipuler des
+          éléments vectoriels.</p>
+          <p>Et des <b>styles</b> pour représenter tout ça.</p>
+        </section>
+
+        <section>
+          <h2>Couches, sources</h2>
+          <pre><code class="javascript" data-trim>
+new ol.layer.Vector({
+  source: new ol.source.Vector({
+    url: 'data/countries.geojson',
+    format: new ol.format.GeoJSON()
+  })
+})
+          </code></pre>
+        </section>
+
+        <section>
+          <h2>Styles</h2>
+          <pre><code class="javascript" data-trim>
+layer.setStyle(new ol.style.Style({
+  fill: new ol.style.Fill({
+    color: 'rgba(255, 255, 255, 0.3)'
+  }),
+  stroke: new ol.style.Stroke({
+    color: '#319FD3'
+  })
+}));
+          </code></pre>
+        </section>
+
+        <section>
+          <h2>Styles (bis)</h2>
+          <pre><code class="javascript" data-trim>
+layer.setStyle(new ol.style.Style({
+  image: new ol.style.Circle({
+    radius: 5,
+    fill: new ol.style.Fill({color: 'orange'})
+  }),
+  geometry: function(feature) {
+    var coordinates = feature.getGeometry()
+        .getCoordinates()[0];
+    return new ol.geom.MultiPoint(coordinates);
+  }
+});
+          </code></pre>
+        </section>
+
+        <section>
+          <h2>Les overlays</h2>
+          <h3>ol.Overlay</h3>
+          <p>Pour rajouter facilement des composants (label, images, popups,
+          etc...) à une coordonnée donnée.</p>
+        </section>
+
+        <section>
+          <pre><code class="javascript">
+var marker = new ol.Overlay({
+  position: ol.proj.fromLonLat([5, 45]),
+  positioning: 'center-center',
+  element: document.getElementById('marker')
+});
+map.addOverlay(marker);
+          </code></pre>
+        </section>
+
+        <section>
+          <h1>Côté technique</h1>
+        </section>
+
+        <section>
+          <h2>Mobile first</h2>
+          <p>
+            OpenLayers 3 a été pensé pour fonctionner sur des appareils mobiles.
+          </p>
+          <ul>
+            <li>Performances</li>
+            <li>Support des évènements touch</li>
+            <li>Compression du code</li>
+            <li>etc...</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Support des navigateurs modernes</h2>
+          <p>Support des navigateurs IE 9 et supérieur qui permet de reposer
+          sur des technologies modernes (Canvas par exemple).</p>
+        </section>
+
+        <section>
+          <h2>Code optimisé</h2>
+          <ul>
+            <li>Assertions</li>
+            <li>Typage</li>
+            <li>Pas de code non utilisé</li>
+            <li>Performances du code</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Compilation & minification</h2>
+          <h3>Avec Google Closure Compiler</h3>
+          <p>Compilation en mode avancé.</p>
+          <p>
+            Permet :
+            <ul>
+              <li>
+                Vérification du code (typage, assertions),
+              </li>
+              <li>
+                Optimisation,
+              </li>
+              <li>
+                Gestion des dépendances,
+              </li>
+              <li>
+                Minification et obfuscation.
+              </li>
+            </ul>
+          </p>
+        </section>
+
+        <section>
+          <h2>
+            Compilation personalisée
+          </h2>
+          <h3>Via un fichier de config</h3>
+          <p><a href="http://openlayers.org/en/v3.15.1/doc/tutorials/custom-builds.html">Custom builds</a></p>
+        </section>
+
+        <section>
+          <h2>
+            Online builder
+          </h2>
+          <p><a href="http://openlayers.org/en/v3.15.1/builder/">Online builder</a></p>
+          <img src="img/ol3_online_builder.png" alt="">
+        </section>
+
+        <section>
+          <h2>Compilation OpenLayers + Application</h2>
+          <h3>Avec Google Closure Compiler</h3>
+          <p>Minification optimale, gestion des dépendances, etc...</p>
+          <p><a href="http://openlayers.org/en/v3.15.1/doc/tutorials/closure.html">Compiling application</a></p>
+        </section>
+
+        <section>
+          <h2>2D -> 3D</h2>
+          <h3>OL3 Cesium</h3>
+          <p>Visualiser une carte OL3 sur un globe Cesium.</p>
+          <p><a href="http://openlayers.org/ol3-cesium/examples/sidebyside.html" target="_blank">Démo</a></p>
+        </section>
+
+        <section>
+          <h2>Optimisations du rendu vectoriel</h2>
+          <ul>
+            <li>Indexation spatiale,</li>
+            <li>Animation frames,</li>
+          </ul>
+        </section>
+
+        <section>
+          <p>Sur-simplification & clipping</p>
+          <p><a href="http://openlayers.org/en/master/examples/fractal.html" target="_blank">Démo fractale</a></p>
+          <img src="img/ol3_simplification.png" alt="">
+        </section>
+
+        <section>
+          <h1>Futur</h1>
+        </section>
+
+        <section>
+          <p>
+          Suppression des dépendances sur Google Closure Library
+          </p>
+        </section>
+
+        <section>
+          <p>
+          Utilisation de goog.module (vs. goog.provide)
+          </p>
+        </section>
+
+        <section>
+          <p>
+            + de support pour WebGL
+          </p>
+          <p>
+          (Actuellement uniquement les points)
+          </p>
+          <a href="http://dev.camptocamp.com/files/ol3/webgl/examples/webgl-points.html">Démo WebGL</a>
+        </section>
+
+        <section>
+          <h1>Démos</h1>
+        </section>
+
+        <section data-background="#7A7F82">
+          <h1 style="color: #FF6809;">Merci !</h1>
           <br>
           <p>
             <a href="http://openlayers.org/">
@@ -79,6 +416,7 @@
             </a>
           </p>
         </section>
+
       </div>
     </div>
 
