@@ -55,8 +55,8 @@
   <body>
     <div class="reveal">
       <div class="slides">
-        <section>
-          <h1 class="beefy">OpenLayers 3</h1>
+        <section data-background="#7A7F82">
+          <h1 class="beefy" style="color: #FF6809;">OpenLayers 3</h1>
         </section>
 
         <section>
@@ -71,7 +71,152 @@
         </section>
 
         <section>
-          <h1>Merci !</h1>
+          <ul>
+            <li>Où en est-on ?</li>
+            <li>Fonctionnalités</li>
+            <li>Côté technique</li>
+            <li>Futur</li>
+            <li>Démos</li>
+          </ul>
+        </section>
+
+        <section>
+          <h1>Où en est-on ?</h1>
+        </section>
+
+        <section>
+          <h2>Un peu d'histoire</h2>
+          <p>Code sprint été 2012</p>
+          <p>Release <b>alpha 1</b> en avril 2013</p>
+          <p>... puis après une longue gestation</p>
+          <p>Release <b>3.0.0</b> stable en août 2014</p>
+        </section>
+
+        <section>
+          <h3>
+            Première utilisation "pour de vrai"
+          </h3>
+          <p>Géoportail suisse - SwissTopo</p>
+          <p><a href="http://map.geo.admin.ch">GeoAdmin.ch</a></p>
+          <p>Février 2014</p>
+        </section>
+
+        <section>
+          <h2>Aujourd'hui</h2>
+          <p>Version 3.15.1</p>
+        </section>
+
+        <section>
+          <p>Cycle de release régulier</p>
+          <p>~ tous les 1 à 2 mois</p>
+        </section>
+
+        <section>
+          <h1>Un petit tour des fonctionnalités</h1>
+        </section>
+
+        <section>
+          <h2>La carte et la vue</h2>
+          <h3>ol.Map & ol.View</h3>
+        </section>
+
+        <section>
+          <p>La <b>carte</b> est le composant principal
+          <ul>
+            On le configure avec :
+            <li>un conteneur,</li>
+            <li>des couches,</li>
+            <li>des interactions,</li>
+            <li>une vue.</li>
+          </ul>
+          </p>
+          <p>La <b>vue</b> est l'objet qui va contrôler l'affichage de la carte.
+          <ul>
+            On la configure avec :
+            <li>un centre,</li>
+            <li>des résolutions.</li>
+          </ul>
+          </p>
+        </section>
+
+        <section>
+          <pre><code class="javascript" data-trim>
+var map = new ol.Map({
+  target: 'map',
+  layers: [new ol.layer.Tile({
+      source: new ol.source.OSM()
+  })],
+  view: new ol.View({
+    center: ol.proj.fromLonLat([5, 45]),
+    zoom: 4
+  })
+});
+          </code></pre>
+        </section>
+
+        <section>
+          <h2>Les couches et les sources</h2>
+          <h3>ol.layer & ol.source</h3>
+        </section>
+
+        <section>
+          <p>Les <b>couches</b> indiquent comment afficher les données.</p>
+          <p>Les <b>sources</b> indiquent la provenance des données et comment les manipuler.</p>
+        </section>
+
+        <section>
+          <ul>
+            Quelques sources :
+            <li>OSM, MapQuest, Bing, ArcGIS,</li>
+            <li>WMS, WMTS, XYZ,</li>
+            <li>Image,</li>
+            <li>Vector <em>(+ ol.format)</em>,</li>
+            <li>TileJSON</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Les interactions et les contrôles</h2>
+          <h3>ol.interaction & ol.control</h3>
+        </section>
+
+        <section>
+          <p>Les <b>interactions</b> gèrent les interactions entre l'utilisateur et la carte.</p>
+          <p>Les <b>contrôles</b> sont des composants primitifs ajoutés à la carte.</p>
+        </section>
+
+        <section>
+          <ul>
+            Quelques interactions :
+            <li>DragPan, DoubleClickZoom, MouseWheelZoom</li>
+            <li>DragRotate, PinchZoom,</li>
+            <li>Draw, Modify</li>
+          </ul>
+        </section>
+
+        <section>
+          <ul>
+            Quelques contrôles :
+            <li>Zoom</li>
+            <li>MousePosition</li>
+            <li>ScaleLine</li>
+            <li>Attribution</li>
+            <li>FullScreen</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Garçon ?</h2>
+          <h2>Un peu de vecteur svp.</h2>
+        </section>
+
+        <section>
+          <p>Des <b>couches</b>, des <b>sources</b>, et des <b>contrôles</b> pour manipuler des
+          éléments vectoriels</p>
+        </section>
+
+        <section data-background="#7A7F82">
+          <h1 style="color: #FF6809;">Merci !</h1>
           <br>
           <p>
             <a href="http://openlayers.org/">
