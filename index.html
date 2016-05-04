@@ -212,7 +212,92 @@ var map = new ol.Map({
 
         <section>
           <p>Des <b>couches</b>, des <b>sources</b>, et des <b>contrôles</b> pour manipuler des
-          éléments vectoriels</p>
+          éléments vectoriels.</p>
+          <p>Et des <b>styles</b> pour représenter tout ça.</p>
+        </section>
+
+        <section>
+          <h2>Couches, sources</h2>
+          <pre><code class="javascript" data-trim>
+new ol.layer.Vector({
+  source: new ol.source.Vector({
+    url: 'data/countries.geojson',
+    format: new ol.format.GeoJSON()
+  })
+})
+          </code></pre>
+        </section>
+
+        <section>
+          <h2>Styles</h2>
+          <pre><code class="javascript" data-trim>
+layer.setStyle(new ol.style.Style({
+  fill: new ol.style.Fill({
+    color: 'rgba(255, 255, 255, 0.3)'
+  }),
+  stroke: new ol.style.Stroke({
+    color: '#319FD3'
+  })
+}));
+          </code></pre>
+        </section>
+
+        <section>
+          <h2>Styles (bis)</h2>
+          <pre><code class="javascript" data-trim>
+layer.setStyle(new ol.style.Style({
+  image: new ol.style.Circle({
+    radius: 5,
+    fill: new ol.style.Fill({color: 'orange'})
+  }),
+  geometry: function(feature) {
+    var coordinates = feature.getGeometry()
+        .getCoordinates()[0];
+    return new ol.geom.MultiPoint(coordinates);
+  }
+});
+          </code></pre>
+        </section>
+
+        <section>
+          <h2>Les overlays</h2>
+          <h3>ol.Overlay</h3>
+          <p>Pour rajouter facilement des composants (label, images, popups,
+          etc...) à une coordonnée donnée.</p>
+        </section>
+
+        <section>
+          <pre><code class="javascript">
+var marker = new ol.Overlay({
+  position: ol.proj.fromLonLat([5, 45]),
+  positioning: 'center-center',
+  element: document.getElementById('marker')
+});
+map.addOverlay(marker);
+          </code></pre>
+        </section>
+
+        <section>
+          <h1>Côté technique</h1>
+        </section>
+
+        <section>
+          <h2>Mobile first</h2>
+          <p>
+            OpenLayers 3 a été pensé pour fonctionner sur des appareils mobiles.
+          </p>
+          <ul>
+            <li>Performances</li>
+            <li>Support des évènements touch</li>
+            <li>Compression du code</li>
+            <li>etc...</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Support des navigateurs modernes</h2>
+          <p>Support des navigateurs IE 9 et supérieur qui permet de reposer
+          sur des technologies modernes (Canvas par exemple).</p>
         </section>
 
         <section data-background="#7A7F82">
@@ -224,6 +309,7 @@ var map = new ol.Map({
             </a>
           </p>
         </section>
+
       </div>
     </div>
 
