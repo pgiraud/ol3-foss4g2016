@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>OpenLayers Feature Frenzy</title>
+
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <link rel="stylesheet" href="bower_components/reveal.js/css/reveal.min.css">
+    <link rel="stylesheet" href="theme/show.css" id="theme">
+
+    <!-- For syntax highlighting -->
+    <link rel="stylesheet" href="bower_components/reveal.js/lib/css/zenburn.css">
+
+    <!--[if lt IE 9]>
+    <script src="bower_components/reveal.js/lib/js/html5shiv.js"></script>
+    <![endif]-->
+    <style>
+      .reveal h1.beefy {
+        font-weight: bold;
+        text-transform: uppercase;
+        text-shadow: 10px 10px 6px rgba(0, 0, 0, 0.2);
+      }
+      .reveal ul.plain {
+        list-style-type: none;
+      }
+      .reveal h2 > img {
+        vertical-align: sub;
+      }
+      .reveal pre {
+        font-size: 0.85em;
+      }
+      .reveal section img.boundless {
+        margin-bottom: -4em;
+        width: 30%;
+      }
+      .reveal section img.inline-icon {
+        margin: 0 0 -10px 0;
+        vertical-align: text-bottom;
+      }
+      .reveal a.squinty {
+        font-size: 80%;
+      }
+      .smaller {
+        font-size: smaller !important;
+      }
+      .reveal p {
+        margin: 1em;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section>
+          <h1 class="beefy">OpenLayers 3</h1>
+        </section>
+
+        <section>
+          <h2>FOSS4G FR 2016</h2>
+          <h3>pierre.giraud@camptocamp.com</h3>
+          <img src="img/camptocamp_logo.png" alt="">
+        </section>
+
+
+        <section>
+          <img src="img/ol-logo.png">
+        </section>
+
+        <section>
+          <h1>Merci !</h1>
+          <br>
+          <p>
+            <a href="http://openlayers.org/">
+              http://openlayers.org/
+            </a>
+          </p>
+        </section>
+      </div>
+    </div>
+
+    <!-- reveal.js loading and configuration -->
+    <script src="bower_components/reveal.js/lib/js/head.min.js"></script>
+    <script src="bower_components/reveal.js/js/reveal.min.js"></script>
+    <script>
+      // Full list of configuration options available here:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+        rollingLinks: false,
+        transition: 'linear', // default/cube/page/concave/zoom/linear/fade/none
+
+        // Optional libraries used to extend on reveal.js
+        dependencies: [{
+          src: 'bower_components/reveal.js/lib/js/classList.js',
+          condition: function() {
+            return !document.body.classList;
+          }
+        }, {
+          src: 'bower_components/reveal.js/plugin/highlight/highlight.js',
+          async: true,
+          callback: function() {
+            hljs.initHighlightingOnLoad();
+          }
+        }]
+      });
+
+    </script>
+    <img src="img/camptocamp_logo.png" alt="" style="position:absolute; bottom: 0; width: 250px;">
+  </body>
+</html>
