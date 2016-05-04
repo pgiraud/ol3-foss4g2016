@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>OpenLayers - Interactions and Controls</title>
+    <link rel="stylesheet" href="ol.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../bower_components/font-awesome/css/font-awesome.css" type="text/css">
+    <style>
+      .ol-scale-line-inner {
+        font-size: 12px;
+      }
+      #locate {
+        top: 46px;
+        right: 8px;
+      }
+      #marker {
+        top: 84px;
+        right: 8px;
+      }
+      #marker:hover {
+        cursor: pointer;
+      }
+      
+    </style>
+  </head>
+  <body>
+    <div id="map" class="full"></div>
+    <div id="locate" class="ol-control">
+      <button type="button" class="fa fa-location-arrow"></button>
+    </div>
+    <div id="marker" class="ol-control">
+      <button type="button" class="fa fa-map-marker"></button>
+    </div>
+    <script src="ol.js"></script>
+    <script src="../bower_components/angular/angular.min.js"></script>
+    <script src="interaction-control.js"></script>
+  </body>
+</html>
