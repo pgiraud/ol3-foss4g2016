@@ -453,7 +453,30 @@ map.addOverlay(marker);
         <section>
           <a href="http://openlayers.org/feature-frenzy/examples/hitdetection.html" target="_blank">Hit detection</a>
           <br>
-          <img src="im/hit_detection.png" alt="">
+          <img src="img/hit_detection.png" alt="">
+        </section>
+
+        <section>
+          <h2>Raster reprojection</h2>
+          <pre class="fragment fade-in" ><code class="javascript" data-trim>
+// Web Mercator
+var source = new ol.source.OSM();
+          </code></pre>
+          <pre class="fragment fade-in" ><code class="javascript" data-trim>
+var view = new ol.View({
+  // Korea 2000
+  projection: 'EPSG:5179',
+  center: [14229000, 4398000],
+  zoom: 7
+});
+        </code></pre>
+        <div class="fragment fade-in">
+          <p>
+            <a class="squinty" href="http://openlayers.org/en/master/examples/reprojection.html">
+              raster reprojection
+            </a>
+          </p>
+        </div>
         </section>
 
         <section>
